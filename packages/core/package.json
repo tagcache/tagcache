@@ -1,0 +1,56 @@
+{
+  "name": "tagcache",
+  "version": "0.1.0",
+  "description": "Tagged cache for Cloudflare Workers and edge runtimes. Zero Node dependencies.",
+  "keywords": [
+    "cache",
+    "tag",
+    "edge",
+    "cloudflare-workers",
+    "kv",
+    "d1",
+    "swr",
+    "stale-while-revalidate"
+  ],
+  "author": "Minchul Kwon <mstorm@mstorm.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tagcache/tagcache.git",
+    "directory": "packages/core"
+  },
+  "bugs": { "url": "https://github.com/tagcache/tagcache/issues" },
+  "homepage": "https://github.com/tagcache/tagcache/tree/main/packages/core#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
+  },
+  "size-limit": [
+    {
+      "name": "tagcache",
+      "path": "dist/index.js",
+      "limit": "1.8 KB",
+      "brotli": false
+    }
+  ]
+}
