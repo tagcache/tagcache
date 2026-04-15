@@ -1,0 +1,54 @@
+{
+  "name": "@tagcache/d1",
+  "version": "0.1.0",
+  "description": "Cloudflare D1 backend for tagcache",
+  "keywords": ["tagcache", "d1", "cloudflare-workers", "edge", "sqlite"],
+  "author": "Minchul Kwon <mstorm@mstorm.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tagcache/tagcache.git",
+    "directory": "packages/d1"
+  },
+  "bugs": { "url": "https://github.com/tagcache/tagcache/issues" },
+  "homepage": "https://github.com/tagcache/tagcache/tree/main/packages/d1#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "migrations.sql", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
+  },
+  "peerDependencies": {
+    "tagcache": "workspace:*"
+  },
+  "devDependencies": {
+    "tagcache": "workspace:*",
+    "@cloudflare/workers-types": "^4.20241127.0"
+  },
+  "size-limit": [
+    {
+      "name": "@tagcache/d1",
+      "path": "dist/index.js",
+      "limit": "200 B",
+      "brotli": false
+    }
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@tagcache/cache-api",
+  "version": "0.1.0",
+  "description": "Cloudflare Cache API backend for tagcache",
+  "keywords": ["tagcache", "cache-api", "cloudflare-workers", "edge"],
+  "author": "Minchul Kwon <mstorm@mstorm.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tagcache/tagcache.git",
+    "directory": "packages/cache-api"
+  },
+  "bugs": { "url": "https://github.com/tagcache/tagcache/issues" },
+  "homepage": "https://github.com/tagcache/tagcache/tree/main/packages/cache-api#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
+  },
+  "peerDependencies": {
+    "tagcache": "workspace:*"
+  },
+  "devDependencies": {
+    "tagcache": "workspace:*",
+    "@cloudflare/workers-types": "^4.20241127.0"
+  },
+  "size-limit": [
+    {
+      "name": "@tagcache/cache-api",
+      "path": "dist/index.js",
+      "limit": "250 B",
+      "brotli": false
+    }
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
