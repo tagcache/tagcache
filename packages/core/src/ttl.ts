@@ -15,6 +15,6 @@ export function parseTtl(input: number | string): number {
     case "m": return n * 60_000
     case "h": return n * 3_600_000
     case "d": return n * 86_400_000
+    default: throw new Error(`invalid ttl unit: ${input}`)
   }
-  throw new Error(`invalid ttl unit: ${input}`)
 }

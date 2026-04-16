@@ -10,7 +10,6 @@ export const baseConfig: Options = {
   target: "es2022",
   minify: false,
   splitting: false,
-  external: ["tagcache"],
 }
 
 export default defineConfig(baseConfig)

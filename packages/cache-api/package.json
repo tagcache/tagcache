@@ -44,7 +44,7 @@
       "name": "@tagcache/cache-api",
       "path": "dist/index.js",
       "limit": "250 B",
-      "brotli": false
+      "gzip": true
     }
   ],
   "publishConfig": {

@@ -44,7 +44,7 @@
       "name": "@tagcache/kv",
       "path": "dist/index.js",
       "limit": "450 B",
-      "brotli": false
+      "gzip": true
     }
   ],
   "publishConfig": {

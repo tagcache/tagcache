@@ -1,7 +1,9 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
 
 concurrency:
@@ -9,6 +11,7 @@ concurrency:
 
 jobs:
   release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -23,7 +26,6 @@ jobs:
         with:
           bun-version: latest
 
-      # changesets/action still needs Node + npm on PATH for publishing
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -40,5 +42,5 @@ jobs:
           title: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # OIDC trusted publisher — no NPM_TOKEN required
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"

@@ -8,4 +8,4 @@ export type {
   TaggedOptions,
 } from "./cache.js"
 export { createCache } from "./cache.js"
-export { TTL } from "./ttl.js"
+export { TTL, parseTtl } from "./ttl.js"

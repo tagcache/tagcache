@@ -49,7 +49,7 @@ A **tagged cache for Cloudflare Workers and edge runtimes** — zero Node depend
 
 ## Architecture
 
-### Package layout (pnpm monorepo)
+### Package layout (bun monorepo)
 
 ```
 packages/
@@ -58,7 +58,7 @@ packages/
 │       ├── index.ts           # public API
 │       ├── cache.ts           # Cache class (all features)
 │       ├── types.ts           # Backend contract
-│       └── compose.ts         # multi-tier routing
+│       └── ttl.ts             # TTL string parser
 │
 ├── cache-api/                 # npm: @tagcache/cache-api
 │   └── src/index.ts
@@ -86,7 +86,7 @@ tagcache/                       # github.com/tagcache/tagcache
 ├── shared/
 │   ├── tsconfig.base.json
 │   └── tsup.config.base.ts
-├── pnpm-workspace.yaml
+├── bun.lock
 ├── package.json                # private root
 ├── turbo.json                  # optional
 ├── README.md
@@ -138,7 +138,7 @@ const s = cache.stats()  // opt-in, tree-shaken if unused
 | Backend | Strategy |
 |---------|----------|
 | **KV** | `tag:<name>` key stores invalidation timestamp. On get, compare entry's `createdAt` vs tag's `invalidatedAt`. Eventually consistent but low write cost. |
-| **D1** | `tagcache_tags(tag, key, invalidated_at)` table with indexes. Strongly consistent. |
+| **D1** | `tagcache_tags(tag, invalidated_at)` table. On get, compare entry's `createdAt` vs tag's `invalidatedAt`. Strongly consistent. |
 | **Cache API** | No native tags. Must pair with KV or D1 for tag index. Used as L1 only. |
 
 ### Multi-tier behavior
@@ -191,7 +191,7 @@ CI must fail if any package exceeds budget — use [`size-limit`](https://github
 
 | Concern | Choice |
 |---------|--------|
-| Package manager | **pnpm** (workspace support) |
+| Package manager | **bun** (workspace support) |
 | Build | **tsup** (ESM + CJS + d.ts) |
 | Test | **vitest** |
 | Versioning | **changesets** (per-package independent versions) |

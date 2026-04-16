@@ -18,7 +18,7 @@
 | [`tagcache`](./packages/core) | `tagcache` | ≤ 1.8 KB |
 | [`@tagcache/cache-api`](./packages/cache-api) | Cloudflare Cache API backend | ≤ 250 B |
 | [`@tagcache/kv`](./packages/kv) | Cloudflare KV backend | ≤ 450 B |
-| [`@tagcache/d1`](./packages/d1) | Cloudflare D1 backend | ≤ 500 B |
+| [`@tagcache/d1`](./packages/d1) | Cloudflare D1 backend | ≤ 200 B |
 
 ## Quickstart (planned)
 
