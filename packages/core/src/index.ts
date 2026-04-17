@@ -5,7 +5,6 @@ export type {
   GetOrSetOptions,
   SetOptions,
   Snapshot,
-  TaggedOptions,
 } from "./cache.js"
 export { createCache } from "./cache.js"
 export { TTL, parseTtl } from "./ttl.js"
