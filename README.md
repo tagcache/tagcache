@@ -7,20 +7,18 @@
 [![npm](https://img.shields.io/npm/v/tagcache.svg)](https://www.npmjs.com/package/tagcache)
 [![license](https://img.shields.io/npm/l/tagcache.svg)](./LICENSE)
 
-## Status
-
-**Pre-alpha.** Scaffold complete, implementation in progress. See [CONTEXT.md](./CONTEXT.md) for design.
-
 ## Packages
 
-| Package | npm | Size budget |
-|---------|-----|-------------|
-| [`tagcache`](./packages/core) | `tagcache` | ≤ 1.8 KB |
-| [`@tagcache/cache-api`](./packages/cache-api) | Cloudflare Cache API backend | ≤ 250 B |
-| [`@tagcache/kv`](./packages/kv) | Cloudflare KV backend | ≤ 450 B |
-| [`@tagcache/d1`](./packages/d1) | Cloudflare D1 backend | ≤ 200 B |
+| Package | Size (min+gz) | Description |
+|---------|:---:|-------------|
+| [`tagcache`](./packages/core) | ~935 B | Core — cache, tags, SWR, coalescing, grace |
+| [`@tagcache/cache-api`](./packages/cache-api) | ~384 B | Cloudflare Cache API backend (L1) |
+| [`@tagcache/kv`](./packages/kv) | ~286 B | Cloudflare KV backend |
+| [`@tagcache/d1`](./packages/d1) | ~517 B | Cloudflare D1 backend |
 
-## Quickstart (planned)
+**Typical usage (core + kv):** ~1.2 KB | **Full L1+L2 (core + cache-api + kv):** ~1.6 KB
+
+## Quickstart
 
 ```ts
 import { createCache } from "tagcache"
@@ -46,6 +44,15 @@ export default {
   },
 }
 ```
+
+## Features
+
+- **Tag invalidation** — `invalidateTag("user:123")` expires all related entries
+- **Request coalescing** — concurrent requests to the same key share one factory call
+- **Stale-while-revalidate** — serve stale data immediately, refresh in background via `ctx.waitUntil`
+- **Grace period** — serve stale data when factory fails, for a configurable duration
+- **Multi-tier** — L1 (per-colo Cache API) + L2 (global KV or D1) read-through
+- **Stats** — opt-in hit/miss/error counters
 
 ## Why
 
