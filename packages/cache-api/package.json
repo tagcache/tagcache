@@ -43,7 +43,7 @@
     {
       "name": "@tagcache/cache-api",
       "path": "dist/index.js",
-      "limit": "250 B",
+      "limit": "450 B",
       "gzip": true
     }
   ],

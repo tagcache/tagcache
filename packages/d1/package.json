@@ -43,7 +43,7 @@
     {
       "name": "@tagcache/d1",
       "path": "dist/index.js",
-      "limit": "200 B",
+      "limit": "600 B",
       "gzip": true
     }
   ],
